@@ -17,14 +17,14 @@ const SafeArea = styled(SafeAreaView)`
 `;
 
 const SearchContainer = styled(View)`
-  padding: 16px;
-  background-color: #fff;
+  padding: ${(props) => props.theme.space[3]}
+  background-color: ${(props) => props.theme.colors.ui.quaternary};
 `;
 
 const RestaurantListContainer = styled(View)`
   flex: 1;
-  padding: 16px;
-  background-color: #fff;
+  padding: ${(props) => props.theme.space[3]}
+  background-color: ${(props) => props.theme.colors.ui.quaternary};
 `;
 
 export const RestaurantsScreen = () => (

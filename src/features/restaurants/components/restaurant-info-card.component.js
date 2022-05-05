@@ -5,16 +5,16 @@ import styled from 'styled-components/native';
 
 // styled-components=================================================
 const Title = styled(Text)`
-  padding: 16px;
+  padding: ${(props) => props.theme.space[3]}
   color: ${(props) => props.theme.colors.ui.primary};
 `;
 const RestaurantCard = styled(Card)`
-  background-color: #fff;
+  background-color: ${(props) => props.theme.colors.ui.quaternary};
 `;
 
 const RestaurantCardCover = styled(Card.Cover)`
-  background-color: #fff;
-  padding: 20px;
+  background-color: ${(props) => props.theme.colors.ui.quaternary};
+  padding: ${(props) => props.theme.space[3]};
 `;
 //============================================================================================================
 
