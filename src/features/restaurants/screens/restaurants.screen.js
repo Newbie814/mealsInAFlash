@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Searchbar } from 'react-native-paper';
+import { FlatList } from 'react-native';
 import styled from 'styled-components/native';
-import { FlatList, View } from 'react-native';
-import Searchbar from '../components/SearchBar.js';
-import { RestaurantInfoCard } from '../components/restaurant-info-card.component.js';
-import { Spacer } from '../../../components/spacer/spacer.component.js';
 
 import { SafeArea } from '../../../components/utility/safe-area.component';
+import { RestaurantInfoCard } from '../components/restaurant-info-card.component';
+import { Spacer } from '../../../components/spacer/spacer.component';
 
-const SearchContainer = styled(View)`
-  padding: ${(props) => props.theme.space[3]}
-  background-color: ${(props) => props.theme.colors.ui.quaternary};
+import { RestaurantsContext } from '../../../services/restaurants/restaurants.context';
+
+const SearchContainer = styled.View`
+  padding: ${(props) => props.theme.space[3]};
 `;
 
 const RestaurantList = styled(FlatList).attrs({
@@ -18,47 +19,23 @@ const RestaurantList = styled(FlatList).attrs({
   },
 })``;
 
-export const RestaurantsScreen = () => (
-  <SafeArea>
-    <SearchContainer>
-      <Searchbar />
-    </SearchContainer>
-    <RestaurantList
-      data={[
-        { name: 1 },
-        { name: 2 },
-        { name: 3 },
-        { name: 4 },
-        { name: 5 },
-        { name: 6 },
-        { name: 7 },
-        { name: 8 },
-        { name: 9 },
-        { name: 10 },
-        { name: 11 },
-        { name: 12 },
-        { name: 13 },
-        { name: 14 },
-      ]}
-      renderItem={() => (
-        <Spacer position="bottom" size="large">
-          <RestaurantInfoCard />
-        </Spacer>
-      )}
-      keyExtractor={(item) => item.name}
-    />
-  </SafeArea>
-);
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     marginTop: StatusBar.currentHeight,
-//   },
-//   search: {},
-//   list: {
-//     flex: 1,
-//     padding: 16,
-//     backgroundColor: 'blue',
-//   },
-// });
+export const RestaurantsScreen = () => {
+  const restaurantContext = useContext(RestaurantsContext);
+  console.log(restaurantContext);
+  return (
+    <SafeArea>
+      <SearchContainer>
+        <Searchbar />
+      </SearchContainer>
+      <RestaurantList
+        data={restaurantContext.restaurants}
+        renderItem={() => (
+          <Spacer position="bottom" size="large">
+            <RestaurantInfoCard />
+          </Spacer>
+        )}
+        keyExtractor={(item) => item.name}
+      />
+    </SafeArea>
+  );
+};
