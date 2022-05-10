@@ -1,9 +1,11 @@
 import React from 'react';
+import { View } from 'react-native';
 
 import { Card } from 'react-native-paper';
 import { Image } from 'react-native';
 import styled from 'styled-components/native';
 import { SvgXml } from 'react-native-svg';
+import { Favorite } from '../../../components/favorites/favorite.component';
 
 // imports from components
 import { Spacer } from '../../../components/spacer/spacer.component';
@@ -44,9 +46,13 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
   } = restaurant;
 
   const ratingArray = Array.from(new Array(Math.floor(rating)));
+
   return (
     <RestaurantCard elevation={5}>
-      <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
+      <View>
+        <Favorite restaurant={restaurant} />
+        <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
+      </View>
       <Info>
         <Text variant="label">{name}</Text>
         <Section>
@@ -68,7 +74,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
               {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
             </Spacer>
             <Spacer position="left" size="large">
-              <Icon style={{ width: 15, height: 15 }} source={{ uri: icon }} />
+              <Icon source={{ uri: icon }} />
             </Spacer>
           </SectionEnd>
         </Section>
