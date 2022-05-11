@@ -41,6 +41,7 @@ export const FavoritesContextProvider = ({ children }) => {
 
   useEffect(() => {
     loadFavorites(favorites);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
