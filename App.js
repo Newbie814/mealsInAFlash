@@ -7,7 +7,7 @@ import {
   Oswald_400Regular,
 } from '@expo-google-fonts/oswald';
 
-import { initializeApp } from 'firebase/app';
+import firebase from 'firebase';
 
 import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato';
 
@@ -27,7 +27,9 @@ const firebaseConfig = {
   appId: '1:420256881549:web:e801a3c130466a055c3bc4',
 };
 
-initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -35,8 +37,9 @@ export default function App() {
     setTimeout(() => {
       firebase
         .auth()
-        .signInWithEmailAndPassword('mo@binni.io', 'test123')
+        .signInWithEmailAndPassword('matt@matthew-woodard.com', '123456')
         .then((user) => {
+          console.log(user);
           setIsAuthenticated(true);
         })
         .catch((e) => {
@@ -56,6 +59,8 @@ export default function App() {
   if (!oswaldLoaded || !latoLoaded) {
     return null;
   }
+
+  if (!isAuthenticated) return null;
 
   return (
     <>
