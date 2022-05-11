@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FlatList, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import { ActivityIndicator, Colors } from 'react-native-paper';
@@ -6,6 +6,7 @@ import { ActivityIndicator, Colors } from 'react-native-paper';
 import { SafeArea } from '../../../components/utility/safe-area.component';
 import { Favorite } from '../../../components/favorites/favorite.component';
 import { Spacer } from '../../../components/spacer/spacer.component';
+import { FavoritesBar } from '../../../components/favorites/favorites-bar.component';
 
 import { RestaurantsContext } from '../../../services/restaurants/restaurants.context';
 import { FavoritesContext } from '../../../services/favorites/favorites.context';
@@ -30,7 +31,8 @@ const LoadingContainer = styled.View`
 
 export const RestaurantsScreen = ({ navigation }) => {
   const { isLoading, restaurants } = useContext(RestaurantsContext);
-  // const { favorites } = useContext(FavoritesContext);
+  const [isToggled, setIsToggled] = useState(false);
+
   return (
     <SafeArea>
       {isLoading && (
@@ -38,12 +40,15 @@ export const RestaurantsScreen = ({ navigation }) => {
           <Loading size={50} animating={true} color={Colors.blue300} />
         </LoadingContainer>
       )}
-      <Search />
+      <Search
+        isFavoritesToggled={isToggled}
+        onFavoritesToggle={() => setIsToggled(!isToggled)}
+      />
+      {isToggled && <FavoritesBar />}
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => {
           return (
-            //swtiched from pressable because I didn't need all the functionality, just some feedback
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate('RestaurantDetail', {
