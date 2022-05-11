@@ -1,9 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { Card } from 'react-native-paper';
-import { Image } from 'react-native';
-import styled from 'styled-components/native';
 import { SvgXml } from 'react-native-svg';
 import { Favorite } from '../../../components/favorites/favorite.component';
 
