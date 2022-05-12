@@ -1,3 +1,5 @@
+/* eslint-disable jsx-quotes */
+/* eslint-disable curly */
 /* eslint-disable prettier/prettier */
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';

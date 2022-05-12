@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState, createContext } from 'react';
 import firebase from 'firebase';
 
