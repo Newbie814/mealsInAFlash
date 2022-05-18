@@ -28,12 +28,11 @@ export const SettingsScreen = ({ navigation }) => {
 
       <List.Section>
         <SettingsItem
-          title='Favourites'
-          description='View your favourites'
+          title='Favorites'
+          description='View your favorites'
           left={(props) => <List.Icon {...props} color='black' icon='heart' />}
-          onPress={() => navigation.navigate('Favourites')}
+          onPress={() => navigation.navigate('Favorites')}
         />
-
         <SettingsItem
           title='Logout'
           left={(props) => <List.Icon {...props} color='black' icon='door' />}
