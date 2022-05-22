@@ -1,17 +1,17 @@
 /* eslint-disable prettier/prettier */
-import antwerp from './antwerp.json';
-import chicago from './chicago.json';
-import toronto from './toronto.json';
-import san_francisco from './san_francisco.json';
+const antwerp = require('./antwerp');
+const chicago = require('./chicago');
+const toronto = require('./toronto');
+const san_francisco = require('./san_francisco');
 
-export const mocks = {
+module.exports.mocks = {
   '51.219448,4.402464': antwerp,
   '43.653225,-79.383186': toronto,
   '41.878113,-87.629799': chicago,
   '37.7749295,-122.4194155': san_francisco,
 };
 
-export const mockImages = [
+const mockImages = [
   'https://res.cloudinary.com/dylvkdabj/image/upload/v1652291731/website%20pics%20family/pexels-jonathan-borba-2983101_e8ss5r.jpg',
   'https://res.cloudinary.com/dylvkdabj/image/upload/v1652291671/website%20pics%20family/pexels-lukas-1352270_zlutws.jpg',
   'https://res.cloudinary.com/dylvkdabj/image/upload/v1652291630/website%20pics%20family/pexels-yanuar-putut-widjanarko-2232433_bsa6xx.jpg',
@@ -22,3 +22,10 @@ export const mockImages = [
   'https://res.cloudinary.com/dylvkdabj/image/upload/v1652292253/website%20pics%20family/pexels-julia-khalimova-3649208_rikwz7.jpg',
   'https://res.cloudinary.com/dylvkdabj/image/upload/v1652292244/website%20pics%20family/pexels-elle-hughes-2647936_e3vupm.jpg',
 ];
+
+module.exports.addMockImage = (restaurant) => {
+  const randomImage =
+    mockImages[Math.ceil(Math.random() * (mockImages.length - 1))];
+  restaurant.photos = [randomImage];
+  return restaurant;
+};
